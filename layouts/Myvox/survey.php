@@ -5,7 +5,10 @@ defined('_EXEC') or die;
 $this->dependencies->add(['css', '{$path.plugins}signature_pad/signature_pad.css']);
 $this->dependencies->add(['js', '{$path.plugins}signature_pad/signature_pad.js']);
 $this->dependencies->add(['css', '{$path.css}Myvox/survey.css']);
-$this->dependencies->add(['js', '{$path.js}Myvox/survey.js?v=1.3']);
+$this->dependencies->add(['js', '{$path.js}Myvox/survey.js?v=1.4']);
+
+$this->dependencies->add(['css', '{$path.plugins}sweet-alert2/sweetalert2.min.css']);
+$this->dependencies->add(['js', '{$path.plugins}sweet-alert2/sweetalert2.min.js']);
 
 ?>
 

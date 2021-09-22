@@ -85,13 +85,35 @@ $(document).ready(function()
             {
                 if (response.status == 'success')
                 {
-                    if (response.widget == true)
-                    {
-                        show_modal_success(response.message, 1500, 'fast');
+                    swal({
+                        text: response.message,
+                        type: 'success',
+                        showLoaderOnConfirm: true,
+                        allowOutsideClick: false,
+                        preConfirm: function () {
+                            return new Promise(function (resolve) {
+                                resolve();
+                            });
+                        }
+                    });
+
+                    if (response.widget == true) {
                         $('[data-modal="widget"]').addClass('view');
                     }
-                    else if (response.widget == false)
-                        show_modal_success(response.message, 1500, response.path);
+
+                    // let _;
+
+                    // if (response.widget == false)
+                    // {
+                    //     _ = response.path;
+                    // }
+                    // else if (response.widget == true)
+                    // {
+                    //     _ = 'fast';
+                    //     $('[data-modal="widget"]').addClass('view');
+                    // }
+
+                    // show_modal_success(response.message, 1500, _);
                 }
                 else if (response.status == 'error')
                     show_form_errors(form, response);
