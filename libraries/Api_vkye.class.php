@@ -19,15 +19,11 @@ class Api_vkye
             $users = [
                 'zaviapms' => 'y329-gfc=7mq}qy(',
                 'mit' => 'qrB3svqybxLrMas6',
-                'siteminder' => 'V97+pf=:z4?Hm|0i'
+                'siteminder' => 'V97+pf=:z4?Hm|0i',
+                'adminit' => 'rR17P2FP0Mv8KKq1'
             ];
 
-            if ($params[0] == 'mit')
-            {
-                $username = 'mit'
-                $password = 'qrB3svqybxLrMas6'
-            }
-            else if ($params[0] == 'siteminder')
+            if ($params[0] == 'siteminder')
             {
                 // $_POST['message'] =
                 // '<soap-env:Envelope xmlns:soap-env="http://schemas.xmlsoap.org/soap/envelope/">
@@ -53,6 +49,11 @@ class Api_vkye
                 $password = $xml->xpath('/soap-env:Envelope/soap-env:Header/wsse:Security/wsse:UsernameToken/wsse:Password');
                 $password = !empty($password[0]) ? json_decode(json_encode($password[0]), 1) : '';
                 $password = !empty($password[0]) ? $password[0] : '';
+            }
+            else if ($params[0] == 'mit')
+            {
+                $username = 'mit';
+                $password = 'qrB3svqybxLrMas6';
             }
             else
             {
