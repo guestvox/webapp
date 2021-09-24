@@ -1800,7 +1800,8 @@ class Myvox_controller extends Controller
 									'status' => 'success',
 									'message' => '{$lang.thanks_answering_survey}',
 									'widget' => $widget,
-									'path' => '/' . $params[0] . '/' . ((Session::get_value('myvox')['url'] == 'survey') ? 'survey/' . Session::get_value('myvox')['survey']['token'] : 'myvox/owner/' . Session::get_value('myvox')['owner']['token'])
+									// 'path' => '/' . $params[0] . '/' . ((Session::get_value('myvox')['url'] == 'survey') ? 'survey/' . Session::get_value('myvox')['survey']['token'] : 'myvox/owner/' . Session::get_value('myvox')['owner']['token'])
+									'path' => 'https://guestvox.com'
 								]);
 							}
 							else
