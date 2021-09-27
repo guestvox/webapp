@@ -9,7 +9,10 @@ class Orders_api extends Model
             if (!empty($params[1]))
             {
                 $query = Functions::get_json_decoded_query($this->database->select('menu_orders', '*', [
-                    'id' => $params[1]
+                    'id' => $params[1],
+                    'ORDER' => [
+                        'id' => 'DESC'
+                    ]
                 ]));
 
                 return !empty($query) ? $query[0] : 'No se encontraron registros';
