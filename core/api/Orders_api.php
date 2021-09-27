@@ -43,11 +43,11 @@ class Orders_api extends Model
                                 $query[$key]['owner'] = $value['owner'][0];
                         }
                     }
+
+                    return $query;
                 }
                 else
                     return 'No se encontraron registros';
-
-                return !empty($query) ? $query : 'No se encontraron registros';
             }
             else
             {
@@ -55,7 +55,22 @@ class Orders_api extends Model
                     'id' => $params[1]
                 ]));
 
-                return !empty($query) ? $query[0] : 'No se encontraron registros';
+                if (!empty($query))
+                {
+                    if (!empty($query[0]['owner']))
+                    {
+                        $owner = Functions::get_json_decoded_query($this->database->select('owners', '*', [
+                            'id' => $value['owner']
+                        ]));
+
+                        if (!empty($owner))
+                            $query[0]['owner'] = $owner;
+                    }
+
+                    return $query[0];
+                }
+                else
+                    return 'No se encontraron registros';
             }
         }
         else
