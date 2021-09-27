@@ -35,7 +35,7 @@ class Orders_api extends Model
                     {
                         if (!empty($value['owner']))
                         {
-                            $value['owner'] = nctions::get_json_decoded_query($this->database->select('owners', '*', [
+                            $value['owner'] = Functions::get_json_decoded_query($this->database->select('owners', '*', [
                                 'id' => $value['owner']
                             ]));
 
