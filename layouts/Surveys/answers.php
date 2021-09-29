@@ -2,7 +2,7 @@
 
 defined('_EXEC') or die;
 
-$this->dependencies->add(['js', '{$path.js}Surveys/answers.js']);
+$this->dependencies->add(['js', '{$path.js}Surveys/answers.js?v=1.1']);
 $this->dependencies->add(['other', '<script>menu_focus("surveys_{$menu_focus}");</script>']);
 
 ?>
@@ -98,7 +98,7 @@ $this->dependencies->add(['other', '<script>menu_focus("surveys_{$menu_focus}");
                     </div>
                     <div class="span12">
                         <div class="buttons">
-                            <a class="delete" button-close><i class="fas fa-times"></i></a>
+                            <a class="delete" button-cancel><i class="fas fa-times"></i></a>
                             <button type="submit" class="new"><i class="fas fa-check"></i></button>
                         </div>
                     </div>

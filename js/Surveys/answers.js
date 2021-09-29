@@ -65,6 +65,16 @@ $(document).ready(function()
         reload = true;
     });
 
+    $('[data-button-modal="filter_surveys_answers"]').on('click', function()
+    {
+        reload = false;
+    });
+
+    $('[data-modal="filter_surveys_answers"]').modal().onCancel(function()
+    {
+        reload = true;
+    });
+
     $('[data-action="edit_reservation"]').on('click', function()
     {
         id = $(this).data('id');
