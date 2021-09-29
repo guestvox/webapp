@@ -2,6 +2,15 @@
 
 $(document).ready(function()
 {
+    var reload = true;
+
+    setTimeout(function() {
+
+        if (reload == true)
+            location.reload();
+
+    }, 60000);
+
     $('form[name="filter_surveys_answers"]').on('submit', function(e)
     {
         e.preventDefault();
@@ -29,6 +38,7 @@ $(document).ready(function()
     $('[data-action="preview_survey_answer"]').on('click', function()
     {
         id = $(this).data('id');
+        reload = false;
 
         $.ajax({
             type: 'POST',
@@ -49,9 +59,16 @@ $(document).ready(function()
         });
     });
 
+    $('[data-modal="preview_survey_answer"]').modal().onCancel(function()
+    {
+        id = null;
+        reload = true;
+    });
+
     $('[data-action="edit_reservation"]').on('click', function()
     {
         id = $(this).data('id');
+        reload = false;
 
         $.ajax({
             type: 'POST',
@@ -88,6 +105,7 @@ $(document).ready(function()
     $('[data-modal="edit_reservation"]').modal().onCancel(function()
     {
         id = null;
+        reload = true;
 
         clean_form($('form[name="edit_reservation"]'));
     });
@@ -119,6 +137,7 @@ $(document).ready(function()
     $('[data-action="print_survey_answer"]').on('click', function()
     {
         id = $(this).data('id');
+        reload = false;
 
         $.ajax({
             type: 'POST',

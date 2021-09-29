@@ -27,7 +27,7 @@ $this->dependencies->add(['other', '<script>menu_focus("surveys_{$menu_focus}");
         <main>
             <div class="survey_answer_preview"></div>
             <div class="buttons">
-                <a class="new" button-close><i class="fas fa-check"></i></a>
+                <a class="new" button-cancel><i class="fas fa-check"></i></a>
             </div>
         </main>
     </div>
@@ -50,6 +50,22 @@ $this->dependencies->add(['other', '<script>menu_focus("surveys_{$menu_focus}");
                             <label required>
                                 <p>{$lang.end_date}</p>
                                 <input type="date" name="end_date" value="<?php echo Session::get_value('settings')['surveys']['reports']['filter']['end_date']; ?>">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="label">
+                            <label required>
+                                <p>Hora de inicio</p>
+                                <input type="hour" name="started_hour" value="<?php echo Session::get_value('settings')['surveys']['reports']['filter']['started_hour']; ?>">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="label">
+                            <label required>
+                                <p>Hora de termino</p>
+                                <input type="hour" name="end_hour" value="<?php echo Session::get_value('settings')['surveys']['reports']['filter']['end_hour']; ?>">
                             </label>
                         </div>
                     </div>

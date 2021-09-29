@@ -429,7 +429,8 @@ class Surveys_model extends Model
 		$AND = [
 			'surveys_answers.account' => Session::get_value('account')['id'],
 			'surveys_answers.survey' => $survey,
-			'surveys_answers.date[<>]' => [Session::get_value('settings')['surveys']['reports']['filter']['started_date'],Session::get_value('settings')['surveys']['reports']['filter']['end_date']]
+			'surveys_answers.date[<>]' => [Session::get_value('settings')['surveys']['reports']['filter']['started_date'],Session::get_value('settings')['surveys']['reports']['filter']['end_date']],
+			'surveys_answers.hour[<>]' => [Session::get_value('settings')['surveys']['reports']['filter']['started_hour'],Session::get_value('settings')['surveys']['reports']['filter']['end_hour']]
 		];
 
 		if (Session::get_value('settings')['surveys']['reports']['filter']['owner'] == 'not_owner')

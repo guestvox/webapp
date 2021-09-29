@@ -1180,6 +1180,8 @@ class Surveys_controller extends Controller
 
 					$settings['surveys']['reports']['filter']['started_date'] = $_POST['started_date'];
 					$settings['surveys']['reports']['filter']['end_date'] = $_POST['end_date'];
+					$settings['surveys']['reports']['filter']['started_hour'] = $_POST['started_hour'];
+					$settings['surveys']['reports']['filter']['end_hour'] = $_POST['end_hour'];
 					$settings['surveys']['reports']['filter']['owner'] = $_POST['owner'];
 					$settings['surveys']['reports']['filter']['rating'] = $_POST['rating'];
 
