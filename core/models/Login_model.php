@@ -144,7 +144,7 @@ class Login_model extends Model
 								'started_date' => Functions::get_past_date(Functions::get_current_date(), '7', 'days'),
 								'end_date' => Functions::get_current_date(),
 								'started_hour' => '00:00:01',
-								'end_hour' => '11:59:59',
+								'end_hour' => '23:59:59',
 								'owner' => 'all',
 								'rating' => 'all',
 								'general' => true,
@@ -157,7 +157,7 @@ class Login_model extends Model
 								'started_date' => Functions::get_past_date(Functions::get_current_date(), '7', 'days'),
 								'end_date' => Functions::get_current_date(),
 								'started_hour' => '00:00:01',
-								'end_hour' => '11:59:59',
+								'end_hour' => '23:59:59',
 								'owner' => 'all',
 								'rating' => 'all'
 							]
@@ -167,7 +167,7 @@ class Login_model extends Model
 								'started_date' => Functions::get_past_date(Functions::get_current_date(), '7', 'days'),
 								'end_date' => Functions::get_current_date(),
 								'started_hour' => '00:00:01',
-								'end_hour' => '11:59:59',
+								'end_hour' => '23:59:59',
 								'owner' => 'all'
 							]
 						]
