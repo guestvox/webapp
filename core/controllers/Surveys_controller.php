@@ -861,12 +861,12 @@ class Surveys_controller extends Controller
 
 				$tbl_report .=
 				'<tr>
-					<td style="padding:0px 10px 10px 10px;' . (!empty($value['comment']) ? 'border-bottom:1px dashed #e0e0e0;' : '') . 'text-align:left;color:#bdbdbd;"></td>
-					<td style="padding:0px 10px 10px 10px;' . (!empty($value['comment']) ? 'border-bottom:1px dashed #e0e0e0;' : '') . 'text-align:left;color:#bdbdbd;"></td>
-					<td style="max-width:200px;padding:0px 10px 10px 10px;' . (!empty($value['email']) ? 'border-bottom:1px dashed #e0e0e0;' : '') . 'text-align:left;color:#bdbdbd;">' . (!empty($value['email']) ? $value['email'] : 'Sin correo electrónico') . '</td>
-					<td style="padding:0px 10px 10px 10px;' . (!empty($value['comment']) ? 'border-bottom:1px dashed #e0e0e0;' : '') . 'text-align:left;color:#bdbdbd;"></td>
-					<td style="padding:0px 10px 10px 10px;' . (!empty($value['comment']) ? 'border-bottom:1px dashed #e0e0e0;' : '') . 'text-align:left;color:#bdbdbd;"></td>
-					<td style="padding:0px 10px 10px 10px;' . (!empty($value['comment']) ? 'border-bottom:1px dashed #e0e0e0;' : '') . 'text-align:left;color:#bdbdbd;"></td>
+					<td style="padding:0px 10px 10px 10px;text-align:left;color:#bdbdbd;"></td>
+					<td style="padding:0px 10px 10px 10px;text-align:left;color:#bdbdbd;"></td>
+					<td style="max-width:200px;padding:0px 10px 10px 10px;text-align:left;color:#bdbdbd;">' . (!empty($value['email']) ? $value['email'] : 'Sin correo electrónico') . '</td>
+					<td style="padding:0px 10px 10px 10px;text-align:left;color:#bdbdbd;"></td>
+					<td style="padding:0px 10px 10px 10px;text-align:left;color:#bdbdbd;"></td>
+					<td style="padding:0px 10px 10px 10px;text-align:left;color:#bdbdbd;"></td>
 				<tr>';
 			}
 
