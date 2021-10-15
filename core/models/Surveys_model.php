@@ -451,6 +451,7 @@ class Surveys_model extends Model
 			'surveys_answers.values',
 			'surveys_answers.firstname',
 			'surveys_answers.lastname',
+			'surveys_answers.email',
 			'surveys_answers.comment',
 			'surveys_answers.reservation',
 			'surveys_answers.date',
