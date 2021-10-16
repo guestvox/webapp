@@ -462,15 +462,17 @@ class Surveys_controller extends Controller
 					$sheet_1->getColumnDimension('F')->setAutoSize(true);
 					$sheet_1->getColumnDimension('G')->setAutoSize(true);
 					$sheet_1->getColumnDimension('H')->setAutoSize(true);
+					$sheet_1->getColumnDimension('I')->setAutoSize(true);
 
 					$sheet_1->setCellValue('A1', 'ID');
 					$sheet_1->setCellValue('B1', 'Folio');
 					$sheet_1->setCellValue('C1', 'Nombre');
-					$sheet_1->setCellValue('D1', 'Fecha');
-					$sheet_1->setCellValue('E1', 'Hora');
-					$sheet_1->setCellValue('F1', 'Propietario');
-					$sheet_1->setCellValue('G1', 'Promedio');
-					$sheet_1->setCellValue('H1', 'Comentarios');
+					$sheet_1->setCellValue('D1', 'Correo electrónico');
+					$sheet_1->setCellValue('E1', 'Fecha');
+					$sheet_1->setCellValue('F1', 'Hora');
+					$sheet_1->setCellValue('G1', 'Propietario');
+					$sheet_1->setCellValue('H1', 'Promedio');
+					$sheet_1->setCellValue('I1', 'Comentarios');
 
 					$sheet_1_count = 2;
 
@@ -479,11 +481,12 @@ class Surveys_controller extends Controller
 						$sheet_1->setCellValue('A' . $sheet_1_count, $value['id']);
 						$sheet_1->setCellValue('B' . $sheet_1_count, $value['token']);
 						$sheet_1->setCellValue('C' . $sheet_1_count, (!empty($value['owner']) ? ((Session::get_value('account')['type'] == 'hotel' AND !empty($query['reservation']['firstname']) AND !empty($query['reservation']['lastname'])) ? $query['reservation']['firstname'] . ' ' . $query['reservation']['lastname'] : 'Anónimo') : $value['firstname'] . ' ' . $value['lastname']));
-						$sheet_1->setCellValue('D' . $sheet_1_count, Functions::get_formatted_date($value['date'], 'd.m.Y'));
-						$sheet_1->setCellValue('E' . $sheet_1_count, Functions::get_formatted_hour($value['hour'], '+ hrs'));
-						$sheet_1->setCellValue('F' . $sheet_1_count, (!empty($value['owner']) ? $value['owner_name'][$this->lang] . (!empty($value['owner_number']) ? ' #' . $value['owner_number'] : '') : 'Sin propietario'));
-						$sheet_1->setCellValue('G' . $sheet_1_count, $value['average']);
-						$sheet_1->setCellValue('H' . $sheet_1_count, ((Session::get_value('settings')['surveys']['reports']['filter']['comments'] == true AND !empty($value['comment'])) ? $value['comment'] : ''));
+						$sheet_1->setCellValue('D' . $sheet_1_count, (!empty($value['email']) ? $value['email'] : 'Sin correo electrónico'));
+						$sheet_1->setCellValue('E' . $sheet_1_count, Functions::get_formatted_date($value['date'], 'd.m.Y'));
+						$sheet_1->setCellValue('F' . $sheet_1_count, Functions::get_formatted_hour($value['hour'], '+ hrs'));
+						$sheet_1->setCellValue('G' . $sheet_1_count, (!empty($value['owner']) ? $value['owner_name'][$this->lang] . (!empty($value['owner_number']) ? ' #' . $value['owner_number'] : '') : 'Sin propietario'));
+						$sheet_1->setCellValue('H' . $sheet_1_count, $value['average']);
+						$sheet_1->setCellValue('I' . $sheet_1_count, ((Session::get_value('settings')['surveys']['reports']['filter']['comments'] == true AND !empty($value['comment'])) ? $value['comment'] : ''));
 
 						$sheet_1_count = $sheet_1_count + 1;
 					}
