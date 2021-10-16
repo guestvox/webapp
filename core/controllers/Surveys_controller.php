@@ -412,6 +412,16 @@ class Surveys_controller extends Controller
 							<td style="width:10%;margin:0px;padding:0px 0px 5px 0px;border:0px;box-sizing:border-box;font-size:10px;font-weight:400;text-align:left;color:#757575;">' . $value['average'] . ' pts</td>
 						</tr>';
 
+						$writing .=
+						'<tr style="width:100%;margin:0px;padding:0px;border:0px;">
+							<td style="width:5%;margin:0px;padding:0px 0px 5px 0px;border:0px;box-sizing:border-box;font-size:10px;font-weight:400;text-align:left;color:#757575;"></td>
+							<td style="width:10%;margin:0px;padding:0px 0px 5px 0px;border:0px;box-sizing:border-box;font-size:10px;font-weight:400;text-align:left;color:#757575;"></td>
+							<td style="width:35%;margin:0px;padding:0px 0px 5px 0px;border:0px;box-sizing:border-box;font-size:10px;font-weight:400;text-align:left;color:#757575;">' . (!empty($value['email']) ? $value['email'] : 'Sin correo electrónico') . '</td>
+							<td style="width:20%;margin:0px;padding:0px 0px 5px 0px;border:0px;box-sizing:border-box;font-size:10px;font-weight:400;text-align:left;color:#757575;"></td>
+							<td style="width:20%;margin:0px;padding:0px 0px 5px 0px;border:0px;box-sizing:border-box;font-size:10px;font-weight:400;text-align:left;color:#757575;"></td>
+							<td style="width:10%;margin:0px;padding:0px 0px 5px 0px;border:0px;box-sizing:border-box;font-size:10px;font-weight:400;text-align:left;color:#757575;"></td>
+						</tr>';
+
 						if (Session::get_value('settings')['surveys']['reports']['filter']['comments'] == true AND !empty($value['comment']))
 						{
 							$writing .=
@@ -424,16 +434,6 @@ class Surveys_controller extends Controller
 								<td style="width:10%;margin:0px;padding:0px 0px 5px 0px;border:0px;box-sizing:border-box;font-size:10px;font-weight:400;text-align:left;color:#757575;"></td>
 							</tr>';
 						}
-
-						$writing .=
-						'<tr style="width:100%;margin:0px;padding:0px;border:0px;">
-							<td style="width:5%;margin:0px;padding:0px 0px 5px 0px;border:0px;box-sizing:border-box;font-size:10px;font-weight:400;text-align:left;color:#757575;"></td>
-							<td style="width:10%;margin:0px;padding:0px 0px 5px 0px;border:0px;box-sizing:border-box;font-size:10px;font-weight:400;text-align:left;color:#757575;"></td>
-							<td style="width:35%;margin:0px;padding:0px 0px 5px 0px;border:0px;box-sizing:border-box;font-size:10px;font-weight:400;text-align:left;color:#757575;">' . (!empty($value['email']) ? $value['email'] : 'Sin correo electrónico') . '</td>
-							<td style="width:20%;margin:0px;padding:0px 0px 5px 0px;border:0px;box-sizing:border-box;font-size:10px;font-weight:400;text-align:left;color:#757575;"></td>
-							<td style="width:20%;margin:0px;padding:0px 0px 5px 0px;border:0px;box-sizing:border-box;font-size:10px;font-weight:400;text-align:left;color:#757575;"></td>
-							<td style="width:10%;margin:0px;padding:0px 0px 5px 0px;border:0px;box-sizing:border-box;font-size:10px;font-weight:400;text-align:left;color:#757575;"></td>
-						</tr>';
 					}
 
 					$writing .=
@@ -849,28 +849,28 @@ class Surveys_controller extends Controller
 					<td style="padding:10px;text-align:left;color:#757575;">' . $value['average'] . ' pts</td>
 				<tr>';
 
+				$tbl_report .=
+				'<tr>
+					<td style="padding:0px 10px 10px 10px;' . (!empty($value['comment']) ? '' : 'border-bottom:1px dashed #e0e0e0;') . 'text-align:left;color:#bdbdbd;"></td>
+					<td style="padding:0px 10px 10px 10px;' . (!empty($value['comment']) ? '' : 'border-bottom:1px dashed #e0e0e0;') . 'text-align:left;color:#bdbdbd;"></td>
+					<td style="max-width:200px;padding:0px 10px 10px 10px;' . (!empty($value['comment']) ? '' : 'border-bottom:1px dashed #e0e0e0;') . 'text-align:left;color:#bdbdbd;">' . (!empty($value['email']) ? $value['email'] : 'Sin correo electrónico') . '</td>
+					<td style="padding:0px 10px 10px 10px;' . (!empty($value['comment']) ? '' : 'border-bottom:1px dashed #e0e0e0;') . 'text-align:left;color:#bdbdbd;"></td>
+					<td style="padding:0px 10px 10px 10px;' . (!empty($value['comment']) ? '' : 'border-bottom:1px dashed #e0e0e0;') . 'text-align:left;color:#bdbdbd;"></td>
+					<td style="padding:0px 10px 10px 10px;' . (!empty($value['comment']) ? '' : 'border-bottom:1px dashed #e0e0e0;') . 'text-align:left;color:#bdbdbd;"></td>
+				<tr>';
+
 				if (Session::get_value('settings')['surveys']['reports']['filter']['comments'] == true AND !empty($value['comment']))
 				{
 					$tbl_report .=
 					'<tr>
-						<td style="padding:0px 10px 10px 10px;text-align:left;color:#bdbdbd;"></td>
-						<td style="padding:0px 10px 10px 10px;text-align:left;color:#bdbdbd;"></td>
-						<td style="max-width:200px;padding:0px 10px 10px 10px;text-align:left;color:#bdbdbd;">' . $value['comment'] . '</td>
-						<td style="padding:0px 10px 10px 10px;text-align:left;color:#bdbdbd;"></td>
-						<td style="padding:0px 10px 10px 10px;text-align:left;color:#bdbdbd;"></td>
-						<td style="padding:0px 10px 10px 10px;text-align:left;color:#bdbdbd;"></td>
+						<td style="padding:0px 10px 10px 10px;border-bottom:1px dashed #e0e0e0;text-align:left;color:#bdbdbd;"></td>
+						<td style="padding:0px 10px 10px 10px;border-bottom:1px dashed #e0e0e0;text-align:left;color:#bdbdbd;"></td>
+						<td style="max-width:200px;padding:0px 10px 10px 10px;border-bottom:1px dashed #e0e0e0;text-align:left;color:#bdbdbd;">' . $value['comment'] . '</td>
+						<td style="padding:0px 10px 10px 10px;border-bottom:1px dashed #e0e0e0;text-align:left;color:#bdbdbd;"></td>
+						<td style="padding:0px 10px 10px 10px;border-bottom:1px dashed #e0e0e0;text-align:left;color:#bdbdbd;"></td>
+						<td style="padding:0px 10px 10px 10px;border-bottom:1px dashed #e0e0e0;text-align:left;color:#bdbdbd;"></td>
 					<tr>';
 				}
-
-				$tbl_report .=
-				'<tr>
-					<td style="padding:0px 10px 10px 10px;border-bottom:1px dashed #e0e0e0;text-align:left;color:#bdbdbd;"></td>
-					<td style="padding:0px 10px 10px 10px;border-bottom:1px dashed #e0e0e0;text-align:left;color:#bdbdbd;"></td>
-					<td style="max-width:200px;padding:0px 10px 10px 10px;border-bottom:1px dashed #e0e0e0;text-align:left;color:#bdbdbd;">' . (!empty($value['email']) ? $value['email'] : 'Sin correo electrónico') . '</td>
-					<td style="padding:0px 10px 10px 10px;border-bottom:1px dashed #e0e0e0;text-align:left;color:#bdbdbd;"></td>
-					<td style="padding:0px 10px 10px 10px;border-bottom:1px dashed #e0e0e0;text-align:left;color:#bdbdbd;"></td>
-					<td style="padding:0px 10px 10px 10px;border-bottom:1px dashed #e0e0e0;text-align:left;color:#bdbdbd;"></td>
-				<tr>';
 			}
 
 			$tbl_report .=
