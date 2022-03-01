@@ -48,6 +48,7 @@ $this->dependencies->add(['other', '<script async defer src="https://maps.google
             <!-- {$div_siteminder} -->
             {$div_zaviapms}
             {$div_ambit}
+            {$div_rappi}
             {$div_answer_surveys}
             {$div_reviews_page}
             {$div_payment}
@@ -278,6 +279,7 @@ $this->dependencies->add(['other', '<script async defer src="https://maps.google
     </div>
 </section>
 {$mdl_edit_myvox_menu_settings}
+{$mdl_edit_rappi_settings}
 {$mdl_edit_myvox_request_settings}
 {$mdl_edit_myvox_incident_settings}
 {$mdl_edit_myvox_survey_settings}

@@ -36,6 +36,7 @@ class Account_model extends Model
 			'accounts.operation',
 			'accounts.surveys',
 			'accounts.siteminder',
+			'accounts.rappi',
 			'accounts.zaviapms',
 			'accounts.ambit',
 			'accounts.sms',
@@ -483,6 +484,24 @@ class Account_model extends Model
 
 		$query = $this->database->update('accounts', [
 			'payment' => json_encode($edited[0]['payment'])
+		], [
+			'id' => Session::get_value('account')['id']
+		]);
+
+		return $query;
+	}
+
+	public function edit_rappi_settings($data)
+	{
+		$rappi = [
+			'status' => !empty($data['status']) ? true : false,
+			'client_id' => !empty($data['status']) ? $data['rappi_client_id'] : '',
+			'client_secret' => !empty($data['status']) ? $data['rappi_client_secret'] : '',
+			'client_email' => !empty($data['status']) ? $data['rappi_client_email'] : ''
+		];
+
+		$query = $this->database->update('accounts', [
+			'rappi' => json_encode($rappi)
 		], [
 			'id' => Session::get_value('account')['id']
 		]);

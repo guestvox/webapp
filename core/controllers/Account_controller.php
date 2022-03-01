@@ -514,6 +514,47 @@ class Account_controller extends Controller
 				}
 			}
 
+			if ($_POST['action'] == 'edit_rappi_settings')
+			{
+				$labels = [];
+
+				if (!isset($_POST['rappi_client_id']) OR empty($_POST['rappi_client_id']))
+					array_push($labels, ['rappi_client_id','']);
+
+				if (!isset($_POST['rappi_client_secret']) OR empty($_POST['rappi_client_secret']))
+					array_push($labels, ['rappi_client_secret','']);
+
+				if (!isset($_POST['rappi_client_email']) OR empty($_POST['rappi_client_email']))
+					array_push($labels, ['rappi_client_email','']);
+
+				if (empty($labels))
+				{
+					$query = $this->model->edit_rappi_settings($_POST, $account);
+
+					if (!empty($query))
+					{
+						Functions::environment([
+							'status' => 'success',
+							'message' => '{$lang.operation_success}'
+						]);
+					}
+					else
+					{
+						Functions::environment([
+							'status' => 'error',
+							'message' => '{$lang.operation_error}'
+						]);
+					}
+				}
+				else
+				{
+					Functions::environment([
+						'status' => 'error',
+						'labels' => $labels
+					]);
+				}
+			}
+
 			if ($_POST['action'] == 'edit_payment')
 			{
 				$labels = [];
@@ -653,6 +694,7 @@ class Account_controller extends Controller
 			$div_siteminder = '';
 			$div_zaviapms = '';
 			$div_ambit = '';
+			$div_rappi = '';
 
 			if ($account['operation'] == true)
 			{
@@ -722,6 +764,27 @@ class Account_controller extends Controller
 						</figure>
 						<h2>Ambit</h2>
 						<span>' . (($account['ambit']['status'] == true) ? '{$lang.activated}' : '{$lang.deactivated}') . '</span>
+					</div>';
+
+
+				}
+
+				if ($account['type'] == 'restaurant')
+				{
+					$div_rappi .=
+					'<div class="stl_5">
+						<figure>
+							<img src="{$path.images}rappi.png">
+						</figure>
+						<h2>Rappi</h2>
+						<span>' . (($account['rappi']['status'] == true) ? '{$lang.activated}' : '{$lang.deactivated}') . '</span>
+						<div class="switch_group">
+							<div class="switch">
+								<input id="rpsw" type="checkbox" ' . (($account['rappi']['status'] == true) ? 'checked' : '') . ' data-switcher>
+								<label for="rpsw"></label>
+							</div>
+							' . (($account['rappi']['status'] == true) ? '<a class="edit" data-action="edit_rappi_settings"><i class="fas fa-pen" aria-hidden="true"></i></a>' : '') . '
+						</div>
 					</div>';
 				}
 			}
@@ -1148,6 +1211,53 @@ class Account_controller extends Controller
 											</label>
 										</div>
 									</div> -->
+									<div class="span12">
+										<div class="buttons">
+											<a class="delete" button-cancel><i class="fas fa-times"></i></a>
+											<button type="submit" class="new"><i class="fas fa-check"></i></button>
+										</div>
+									</div>
+								</div>
+							</form>
+						</main>
+					</div>
+				</section>';
+			}
+
+			$mdl_edit_rappi_settings = '';
+
+			if ($account['type'] == 'restaurant')
+			{
+				$mdl_edit_rappi_settings .=
+				'<section class="modal fullscreen" data-modal="edit_rappi_settings">
+					<div class="content">
+						<main>
+							<form name="edit_rappi_settings">
+								<div class="row">
+									<div class="span6">
+										<div class="label">
+											<label required>
+												<p>ID de cliente <a data-action="get_help" data-text=""><i class="fas fa-question-circle"></i></a></p>
+												<input type="text" name="rappi_client_id">
+											</label>
+										</div>
+									</div>
+									<div class="span6">
+										<div class="label">
+											<label required>
+												<p>Clave secreta <a data-action="get_help" data-text=""><i class="fas fa-question-circle"></i></a></p>
+												<input type="text" name="rappi_client_secret">
+											</label>
+										</div>
+									</div>
+									<div class="span12">
+										<div class="label">
+											<label required>
+												<p>{$lang.email} <a data-action="get_help" data-text=""><i class="fas fa-question-circle"></i></a></p>
+												<input type="email" name="rappi_client_email">
+											</label>
+										</div>
+									</div>
 									<div class="span12">
 										<div class="buttons">
 											<a class="delete" button-cancel><i class="fas fa-times"></i></a>
@@ -2017,6 +2127,7 @@ Reformas o Modificaciones. Las PARTES aceptan y reconocen que el presente CONTRA
 				'{$div_siteminder}' => $div_siteminder,
 				'{$div_zaviapms}' => $div_zaviapms,
 				'{$div_ambit}' => $div_ambit,
+				'{$div_rappi}' => $div_rappi,
 				'{$div_answer_surveys}' => $div_answer_surveys,
 				'{$div_reviews_page}' => $div_reviews_page,
 				'{$div_payment}' => $div_payment,
@@ -2028,6 +2139,7 @@ Reformas o Modificaciones. Las PARTES aceptan y reconocen que el presente CONTRA
 				'{$opt_languages}' => $opt_languages,
 				'{$opt_ladas}' => $opt_ladas,
 				'{$mdl_edit_myvox_menu_settings}' => $mdl_edit_myvox_menu_settings,
+				'{$mdl_edit_rappi_settings}' => $mdl_edit_rappi_settings,
 				'{$mdl_edit_myvox_request_settings}' => $mdl_edit_myvox_request_settings,
 				'{$mdl_edit_myvox_incident_settings}' => $mdl_edit_myvox_incident_settings,
 				'{$mdl_edit_voxes_attention_times_settings}' => $mdl_edit_voxes_attention_times_settings,

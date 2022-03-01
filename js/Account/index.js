@@ -1048,6 +1048,105 @@ $(document).ready(function()
         });
     });
 
+    $('#rpsw').on('change', function()
+    {
+        if ($(this).is(':checked'))
+            get_rappi_settings();
+        else
+        {
+            $.ajax({
+                type: 'POST',
+                data: 'status=' + status + '&action=edit_rappi_settings',
+                processData: false,
+                cache: false,
+                dataType: 'json',
+                success: function(response)
+                {
+                    if (response.status == 'success')
+                        location.reload();
+                    else if (response.status == 'error')
+                        show_modal_error(response.message);
+                }
+            });
+        }
+    });
+
+    $('[data-action="edit_rappi_settings"]').on('click', function()
+    {
+        edit = true;
+
+        get_rappi_settings();
+    });
+
+    function get_rappi_settings()
+    {
+        $.ajax({
+            type: 'POST',
+            data: 'action=get_account',
+            processData: false,
+            cache: false,
+            dataType: 'json',
+            success: function(response)
+            {
+                if (response.status == 'success')
+                {
+                    status = true;
+
+                    $('[data-modal="edit_rappi_settings"]').find('[name="rappi_client_id"]').val(response.data.rappi.client_id);
+                    $('[data-modal="edit_rappi_settings"]').find('[name="rappi_client_secret"]').val(response.data.rappi.client_secret);
+                    $('[data-modal="edit_rappi_settings"]').find('[name="rappi_client_email"]').val(response.data.rappi.client_email);
+
+                    required_focus('form', $('form[name="edit_rappi_settings"]'), null);
+
+                    $('[data-modal="edit_rappi_settings"]').addClass('view');
+                }
+                else if (response.status == 'error')
+                    show_modal_error(response.message);
+            }
+        });
+    }
+
+    $('[data-modal="edit_rappi_settings"]').modal().onCancel(function()
+    {
+        if (edit == false)
+        {
+            $('#rpsw').prop('checked', false);
+            $('#rpsw').parent().removeClass('checked');
+        }
+
+        status = '';
+        edit = false;
+
+        clean_form($('form[name="edit_rappi_settings"]'));
+    });
+
+    $('form[name="edit_rappi_settings"]').on('submit', function(e)
+    {
+        e.preventDefault();
+
+        var form = $(this);
+        var data = new FormData(form[0]);
+
+        data.append('status', status);
+        data.append('action', 'edit_rappi_settings');
+
+        $.ajax({
+            type: 'POST',
+            data: data,
+            contentType: false,
+            processData: false,
+            cache: false,
+            dataType: 'json',
+            success: function(response)
+            {
+                if (response.status == 'success')
+                    show_modal_success(response.message, 600);
+                else if (response.status == 'error')
+                    show_form_errors(form, response);
+            }
+        });
+    });
+
     $('#susw').on('change', function()
     {
         if ($(this).is(':checked'))
