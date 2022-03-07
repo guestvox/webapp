@@ -119,7 +119,7 @@ class Configuration
 	 *
      * @var boolean $db_state
      */
-	public static $db_state = true;
+	public static $db_state = false;
 
 	/**
      * Tipo de base de datos.
@@ -138,7 +138,7 @@ class Configuration
 	 *
      * @var string $db_host
      */
-	public static $db_host = 'localhost';
+	public static $db_host = '';
 
 	/**
      * Nombre de la base de datos
@@ -147,7 +147,7 @@ class Configuration
 	 *
      * @var string $db_name
      */
-	public static $db_name = 'guestvox';
+	public static $db_name = '';
 
 	/**
      * Usuario de la base de datos
@@ -156,7 +156,7 @@ class Configuration
 	 *
      * @var string $db_user
      */
-	public static $db_user = 'root';
+	public static $db_user = '';
 
 	/**
      * Contraseña de la base de datos.
@@ -259,7 +259,7 @@ class Configuration
 	 *
      * @var string $smtp_secure
      */
-	public static $smtp_secure = 'ssl';
+	public static $smtp_secure = 'tls';
 
 	/**
      * Puerto de conexion al servidor SMTP.
@@ -268,5 +268,5 @@ class Configuration
 	 *
      * @var integer $smtp_port
      */
-	public static $smtp_port = 465;
+	public static $smtp_port = 25;
 }
