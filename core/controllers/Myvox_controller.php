@@ -1786,6 +1786,90 @@ class Myvox_controller extends Controller
 
 							if (!empty($query))
 							{
+								$mail1_subject = Session::get_value('myvox')['account']['settings']['myvox']['survey']['mail']['subject'][$this->lang1];
+								$mail1_description = Session::get_value('myvox')['account']['settings']['myvox']['survey']['mail']['description'][$this->lang1];
+
+								if (!empty($mail1_subject) AND !empty($mail1_description))
+								{
+									$mail1 = new Mailer(true);
+								
+									try
+									{
+										$mail1->setFrom('noreply@guestvox.com', 'Guestvox');
+										$mail1->addAddress($_POST['email'], $_POST['firstname'] . ' ' . $_POST['lastname']);
+										$mail1->Subject = $mail1_subject;
+										$mail1->Body =
+										'<html>
+											<head>
+												<title>' . $mail1_subject . '</title>
+											</head>
+											<body>
+												<table style="width:600px;margin:0px;padding:20px;border:0px;box-sizing:border-box;background-color:#eee">
+													<tr style="width:100%;margin:0px 0px 10px 0px;padding:0px;border:0px;">
+														<td style="width:100%;margin:0px;padding:40px 20px;border:0px;box-sizing:border-box;background-color:#fff;">
+															<figure style="width:100%;margin:0px;padding:0px;text-align:center;">
+																<img style="width:100%;max-width:300px;" src="https://' . Configuration::$domain . '/images/logotype_color.png">
+															</figure>
+														</td>
+													</tr>
+													<tr style="width:100%;margin:0px 0px 10px 0px;padding:0px;border:0px;">
+														<td style="width:100%;margin:0px;padding:40px 20px;border:0px;box-sizing:border-box;background-color:#fff;">
+															<h4 style="width:100%;margin:0px 0px 20px 0px;padding:0px;font-size:18px;font-weight:600;text-align:center;color:#212121;">' . $mail1_subject . '</h4>
+															<p style="width:100%;margin:0px 0px 20px 0px;padding:0px;font-size:14px;font-weight:400;text-align:left;color:#757575;">' . $mail1_description . '</p>
+														</td>
+													</tr>
+													<tr style="width:100%;margin:0px;padding:0px;border:0px;">
+														<td style="width:100%;margin:0px;padding:20px;border:0px;box-sizing:border-box;background-color:#fff;">
+															<a style="width:100%;display:block;padding:20px 0px;box-sizing:border-box;font-size:14px;font-weight:400;text-align:center;text-decoration:none;color:#757575;" href="https://' . Configuration::$domain . '">' . Configuration::$domain . '</a>
+														</td>
+													</tr>
+												</table>
+											</body>
+										</html>';
+										$mail1->send();
+									}
+									catch (Exception $e) { }
+									
+									// $sms2 = $this->model->get_sms();
+									//
+									// if ($sms2 > 0)
+									// {
+									// 	$sms2_basic  = new \Nexmo\Client\Credentials\Basic('45669cce', 'CR1Vg1bpkviV8Jzc');
+									// 	$sms2_client = new \Nexmo\Client($sms2_basic);
+									// 	$sms2_text = 'Guestvox. ' . Languages::email('new', 'request')[$this->lang2] . '. ';
+									// 	$sms2_text .= Languages::email('token')[$this->lang2] . ': ' . $_POST['token'] . '. ';
+									// 	$sms2_text .= Languages::email('owner')[$this->lang2] . ': ' . Session::get_value('myvox')['owner']['name'][$this->lang2] . (!empty(Session::get_value('myvox')['owner']['number']) ? ' #' . Session::get_value('myvox')['owner']['number'] : '') . '. ';
+									// 	$sms2_text .= Languages::email('opportunity_area')[$this->lang2] . ': ' . $_POST['opportunity_area']['name'][$this->lang2] . '. ';
+									// 	$sms2_text .= Languages::email('opportunity_type')[$this->lang2] . ': ' . $_POST['opportunity_type']['name'][$this->lang2] . '. ';
+									// 	$sms2_text .= Languages::email('started_date')[$this->lang2] . ': ' . Functions::get_formatted_date($_POST['started_date'], 'd M y') . '. ';
+									// 	$sms2_text .= Languages::email('started_hour')[$this->lang2] . ': ' . Functions::get_formatted_hour($_POST['started_hour'], '+ hrs') . '. ';
+									// 	$sms2_text .= Languages::email('location')[$this->lang2] . ': ' . $_POST['location']['name'][$this->lang2] . '. ';
+									// 	$sms2_text .= Languages::email('urgency')[$this->lang2] . ': ' . Languages::email('medium')[$this->lang2] . '. ';
+									// 	$sms2_text .= Languages::email('observations')[$this->lang2] . ': ' . (!empty($_POST['observations']) ? $_POST['observations'] : Languages::email('not_observations')[$this->lang2]) . '. ';
+									// 	$sms2_text .= 'https://' . Configuration::$domain . '/voxes/details/' . $_POST['token'];
+									//
+									// 	foreach ($_POST['assigned_users'] as $value)
+									// 	{
+									// 		if ($sms2 > 0)
+									// 		{
+									// 			try
+									// 			{
+									// 				$sms2_client->message()->send([
+									// 					'to' => $value['phone']['lada'] . $value['phone']['number'],
+									// 					'from' => 'Guestvox',
+									// 					'text' => $sms2_text
+									// 				]);
+									//
+									// 				$sms2 = $sms2 - 1;
+									// 			}
+									// 			catch (Exception $e) { }
+									// 		}
+									// 	}
+									//
+									// 	$this->model->edit_sms($sms2);
+									// }
+								}
+
 								$widget = false;
 
 								if (!empty(Session::get_value('myvox')['account']['settings']['myvox']['survey']['widget']))
