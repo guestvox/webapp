@@ -119,7 +119,7 @@ class Configuration
 	 *
      * @var boolean $db_state
      */
-	public static $db_state = false;
+	public static $db_state = true;
 
 	/**
      * Tipo de base de datos.
@@ -138,7 +138,7 @@ class Configuration
 	 *
      * @var string $db_host
      */
-	public static $db_host = '';
+	public static $db_host = '144.126.219.216';
 
 	/**
      * Nombre de la base de datos
@@ -147,7 +147,7 @@ class Configuration
 	 *
      * @var string $db_name
      */
-	public static $db_name = '';
+	public static $db_name = 'production';
 
 	/**
      * Usuario de la base de datos
@@ -156,7 +156,7 @@ class Configuration
 	 *
      * @var string $db_user
      */
-	public static $db_user = '';
+	public static $db_user = 'guestvox';
 
 	/**
      * Contraseña de la base de datos.
@@ -165,7 +165,7 @@ class Configuration
 	 *
      * @var string $db_pass
      */
-	public static $db_pass = '';
+	public static $db_pass = 'Jsw90w&6';
 
 	/**
      * Tipo de caracteres para la base de datos. Opcional.
@@ -221,7 +221,7 @@ class Configuration
 	 *
      * @var boolean $smtp_auth
      */
-	public static $smtp_auth = false;
+	public static $smtp_auth = true;
 
 	/**
      * Dominio o IP del servidor SMTP.
@@ -230,7 +230,7 @@ class Configuration
 	 *
      * @var string $smtp_host
      */
-	public static $smtp_host = '';
+	public static $smtp_host = 'smtp.gmail.com';
 
 	/**
      * Usuario de la cuenta smtp.
@@ -240,7 +240,7 @@ class Configuration
 	 *
      * @var string $smtp_user
      */
-	public static $smtp_user = '';
+	public static $smtp_user = 'guestvoxnoreply@gmail.com';
 
 	/**
      * Contraseña de la cuenta smtp.
@@ -249,7 +249,7 @@ class Configuration
 	 *
      * @var string $smtp_pass
      */
-	public static $smtp_pass = '';
+	public static $smtp_pass = 'Hsi63p6@';
 
 	/**
      * Seguridad de la encriptacion para el envio de SMTP.
@@ -268,5 +268,5 @@ class Configuration
 	 *
      * @var integer $smtp_port
      */
-	public static $smtp_port = 25;
+	public static $smtp_port = 587;
 }
