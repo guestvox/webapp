@@ -353,13 +353,13 @@ class Functions
             return null;
 	}
 
-    public static function base_64($file, $upload_directory = PATH_UPLOADS, $extension = 'png')
+    public static function base_64($file, $account_path, $upload_directory = PATH_UPLOADS, $extension = 'png')
     {
         $security = new Security();
 
         $file = explode(',', $file);
         $file = base64_decode($file[1]);
-        $name = Session::get_value('account')['path'] . '_' . $security->random_string(16) . '.' . $extension;
+        $name = $account_path . '_' . $security->random_string(16) . '.' . $extension;
         $path = $upload_directory . $name;
 
         file_put_contents($path, $file);

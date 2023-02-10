@@ -14,6 +14,7 @@ class Myvox_model extends Model
 		$query = Functions::get_json_decoded_query($this->database->select('accounts', [
 			'id',
 			'name',
+			'path',
 			'type',
 			'location',
 			'language',
@@ -714,7 +715,7 @@ class Myvox_model extends Model
 			'reservation' => (Session::get_value('myvox')['url'] == 'survey') ? null : ((Session::get_value('myvox')['account']['type'] == 'hotel') ? json_encode(Session::get_value('myvox')['owner']['reservation']) : null),
 			'date' => Functions::get_current_date(),
 			'hour' => Functions::get_current_hour(),
-			'signature' => (Session::get_value('myvox')['survey']['signature'] == true) ? Functions::base_64($data['signature']) : null,
+			'signature' => (Session::get_value('myvox')['survey']['signature'] == true) ? Functions::base_64($data['signature'], Session::get_value('myvox')['account']['path']) : null,
 			'public' => false
 		]);
 

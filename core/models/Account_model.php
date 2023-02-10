@@ -442,7 +442,7 @@ class Account_model extends Model
 				$edited[0]['payment']['contract']['status'] = 'pending';
 				$edited[0]['payment']['contract']['place'] = $data['contract_place'];
 				$edited[0]['payment']['contract']['date'] = Functions::get_current_date();
-				$edited[0]['payment']['contract']['signature'] = Functions::base_64($data['contract_signature']);
+				$edited[0]['payment']['contract']['signature'] = Functions::base_64($data['contract_signature'], Session::get_value('account')['path']);
 				$edited[0]['payment']['contract']['titular']['fiscal']['person'] = $data['contract_titular_fiscal_person'];
 				$edited[0]['payment']['contract']['titular']['fiscal']['id'] = $data['contract_titular_fiscal_id'];
 				$edited[0]['payment']['contract']['titular']['fiscal']['name'] = $data['contract_titular_fiscal_name'];
