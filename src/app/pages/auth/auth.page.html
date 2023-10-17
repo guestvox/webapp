@@ -1,0 +1,43 @@
+<section class="page-content">
+  <div class="container">
+    <form name="login" class="form-access bg-light-subtle mx-auto px-4 py-5 pb-4 rounded-1">
+      <header class="text-center mb-5">
+        <figure class="logotype mx-auto mb-4" role="button">
+          <img src="./assets/images/logotype-large.svg" alt="Logotipo">
+        </figure>
+        <h3 class="fs-4 fw-bold text-body-tertiary mb-0">Inicio de sesión</h3>
+      </header>
+      <main class="mb-4">
+        <div class="input-group has-validation mb-1">
+          <input name="email" type="email" class="form-control bg-body-tertiary p-3" id="formControlEmail">
+          <div class="invalid-tooltip message-error px-3"> </div>
+        </div>
+        <label for="formControlEmail" class="form-label px-3 mb-3">Correo electrónico</label>
+
+        <div class="input-group has-validation mb-1">
+          <input #inputPassword name="password" type="password" class="form-control bg-body-tertiary p-3"
+            id="formControlPassword">
+          <span class="input-group-text rounded-0 fs-4 opacity-50" role="button"
+            (click)="inputPassword.type=inputPassword.type=='password'?'text':'password'">
+            <ng-container *ngIf="inputPassword.type == 'password'">
+              <i class="bi bi-eye-fill"></i>
+            </ng-container>
+            <ng-container *ngIf="inputPassword.type == 'text'">
+              <i class="bi bi-eye-slash-fill"></i>
+            </ng-container>
+          </span>
+          <div class="invalid-tooltip message-error px-3"> </div>
+        </div>
+        <label for="formControlPassword" class="form-label px-3 mb-0">Contraseña</label>
+      </main>
+      <footer>
+        <div class="d-grid gap-2">
+          <button class="btn btn-primary text-light py-2" type="button">Iniciar Sesión</button>
+          <a class="btn btn-link text-dark text-decoration-none">Olvidé mi contraseña.</a>
+        </div>
+      </footer>
+    </form>
+    <p class="copy m-0 pt-3">Design by <a href="//guestvox.com" target="_blank"
+        rel="noopener noreferrer">guestvox.com</a></p>
+  </div>
+</section>

@@ -1,0 +1,79 @@
+/* Form access (Login - Register)
+------------------------------------------------------------------------------*/
+.page-content {
+  padding-top: 50px;
+  padding-bottom: 50px;
+
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+0,000000+100&1+38,0+39 */
+  background: -moz-linear-gradient(
+    top,
+    var(--bs-primary) 0%,
+    var(--bs-primary) 40%,
+    rgba(0, 0, 0, 0) 40%,
+    rgba(0, 0, 0, 0) 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    top,
+    var(--bs-primary) 0%,
+    var(--bs-primary) 40%,
+    rgba(0, 0, 0, 0) 40%,
+    rgba(0, 0, 0, 0) 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    var(--bs-primary) 0%,
+    var(--bs-primary) 40%,
+    rgba(0, 0, 0, 0) 40%,
+    rgba(0, 0, 0, 0) 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+
+  p.copy {
+    font-size: 10px;
+    font-weight: bold;
+    text-transform: lowercase;
+    opacity: 0.4;
+    text-align: center;
+
+    > a {
+      color: #222;
+      font-weight: bold;
+    }
+  }
+}
+
+.form-access {
+  position: relative;
+  width: 90%;
+  max-width: 450px;
+  -webkit-box-shadow: 1px 0px 20px rgb(0 0 0 / 5%);
+  box-shadow: 1px 0px 20px rgb(0 0 0 / 5%);
+
+  header {
+    .logotype {
+      width: 200px;
+
+      > .img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.colored-toast {
+  &.swal2-icon-error {
+    background-color: #f27474 !important;
+
+    .swal2-title {
+      color: white;
+    }
+
+    .swal2-close {
+      color: white;
+    }
+
+    .swal2-html-container {
+      color: white;
+    }
+  }
+}
