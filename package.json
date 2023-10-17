@@ -2,9 +2,10 @@
   "name": "guestvox",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build"
+    "start": "ng serve --port 4200",
+    "server-dev": "ng build --base-href / --configuration development && http-server -p 8080 -c-1 dist/guestvox",
+    "server-prod": "ng build --base-href / && http-server -p 8080 -c-1 dist/guestvox -o",
+    "deploy": "ng build"
   },
   "private": true,
   "dependencies": {
