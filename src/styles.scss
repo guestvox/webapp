@@ -1,1 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+/* Importing Bootstrap Icons SCSS file. */
+@import "bootstrap-icons/font/bootstrap-icons";
+/* Importing Theme SCSS file. */
+@import "./assets/scss/theme.scss";
