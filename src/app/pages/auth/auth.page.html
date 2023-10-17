@@ -8,31 +8,48 @@
         <h3 class="fs-4 fw-bold text-body-tertiary mb-0">Inicio de sesión</h3>
       </header>
       <main class="mb-4">
-        <div class="input-group has-validation mb-1">
-          <input name="email" type="email" class="form-control bg-body-tertiary p-3" id="formControlEmail">
-          <div class="invalid-tooltip message-error px-3"> </div>
-        </div>
-        <label for="formControlEmail" class="form-label px-3 mb-3">Correo electrónico</label>
+        <form [formGroup]="formLogin">
+          <div class="input-group has-validation mb-1">
+            <input formControlName="email" name="email" type="email" class="form-control bg-body-tertiary p-3"
+              id="formControlEmail"
+              [ngClass]="{ 'is-invalid': email?.invalid && (email?.dirty || email?.touched) && email?.errors }">
 
-        <div class="input-group has-validation mb-1">
-          <input #inputPassword name="password" type="password" class="form-control bg-body-tertiary p-3"
-            id="formControlPassword">
-          <span class="input-group-text rounded-0 fs-4 opacity-50" role="button"
-            (click)="inputPassword.type=inputPassword.type=='password'?'text':'password'">
-            <ng-container *ngIf="inputPassword.type == 'password'">
-              <i class="bi bi-eye-fill"></i>
+            <ng-container *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+              <ng-container *ngIf="email?.errors?.['required']">
+                <div class="invalid-tooltip message-error px-3">Se requiere un correo electrónico.</div>
+              </ng-container>
+              <ng-container *ngIf="email?.errors?.['email']">
+                <div class="invalid-tooltip message-error px-3">Escribe un correo electrónico, válido.</div>
+              </ng-container>
             </ng-container>
-            <ng-container *ngIf="inputPassword.type == 'text'">
-              <i class="bi bi-eye-slash-fill"></i>
+          </div>
+          <label for="formControlEmail" class="form-label px-3 mb-3">Correo electrónico</label>
+
+          <div class="input-group has-validation mb-1">
+            <input formControlName="password" #inputPassword name="password" type="password"
+              class="form-control bg-body-tertiary p-3" id="formControlPassword"
+              [ngClass]="{ 'is-invalid': password?.invalid && (password?.dirty || password?.touched) && password?.errors }">
+            <span class="input-group-text rounded-0 fs-4 opacity-50" role="button"
+              (click)="inputPassword.type=inputPassword.type=='password'?'text':'password'">
+              <ng-container *ngIf="inputPassword.type == 'password'">
+                <i class="bi bi-eye-fill"></i>
+              </ng-container>
+              <ng-container *ngIf="inputPassword.type == 'text'">
+                <i class="bi bi-eye-slash-fill"></i>
+              </ng-container>
+            </span>
+            <ng-container *ngIf="password?.invalid && (password?.dirty || password?.touched)">
+              <ng-container *ngIf="password?.errors?.['required']">
+                <div class="invalid-tooltip message-error px-3">Escribe una contraseña.</div>
+              </ng-container>
             </ng-container>
-          </span>
-          <div class="invalid-tooltip message-error px-3"> </div>
-        </div>
-        <label for="formControlPassword" class="form-label px-3 mb-0">Contraseña</label>
+          </div>
+          <label for="formControlPassword" class="form-label px-3 mb-0">Contraseña</label>
+        </form>
       </main>
       <footer>
         <div class="d-grid gap-2">
-          <button class="btn btn-primary text-light py-2" type="button">Iniciar Sesión</button>
+          <button class="btn btn-primary text-light py-2" type="button" (click)="login()">Iniciar Sesión</button>
           <a class="btn btn-link text-dark text-decoration-none">Olvidé mi contraseña.</a>
         </div>
       </footer>
